@@ -2,9 +2,3 @@ type Portal @entity {
   id: ID!
   svgs: [String!]!
 }
-
-type PortalOptionSvgs @entity {
-  id: ID!
-  portal: Portal!
-  svg:
-}
