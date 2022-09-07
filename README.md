@@ -1,4 +1,4 @@
-# aavegotchi-svg-subgraph
+# aavegotchi-portal-svgs-subgraph
 
 This subgraph allows you to query for the images of the aavegotchi.
 It listens on the claim gotchi as well as the equipWearables aavegotchi.
