@@ -1,0 +1,33 @@
+name: Deploy to Satsuma Service on Amoy
+
+on:
+  push:
+    tags:
+      - "amoy-*"
+
+jobs:
+  buildAndDeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18
+      - name: Install Yarn
+        run: npm i -g yarn
+      - name: Install Libs
+        run: yarn --frozen-lockfile
+      - name: Codegen
+        run: yarn codegen:amoy
+      - name: Build
+        run: yarn build:amoy
+      - name: Deploy to Satsuma on amoy
+        run: |
+          npx graph deploy aavegotchi-portal-svgs-amoy \
+            --deploy-key ${{secrets.SATSUMA_ACCESS_TOKEN}} \
+            --node https://subgraphs.alchemy.com/api/subgraphs/deploy \
+            --ipfs https://ipfs.satsuma.xyz \
+            --version-label ${GITHUB_REF#refs/*/} \
+            subgraph.amoy.yaml
+        shell: bash
