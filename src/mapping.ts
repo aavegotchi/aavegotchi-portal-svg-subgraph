@@ -1,10 +1,9 @@
 import {
   OpenPortals,
-  PortalOpened
-} from "../generated/Contract/Contract"
-import { fetchPortalSvgs, getOrCreatePortal} from "./helper"
-
-
+  PortalOpened,
+  Transfer,
+} from "../generated/Contract/Contract";
+import { fetchPortalSvgs, getOrCreatePortal } from "./helper";
 
 export function handlePortalOpened(event: PortalOpened): void {
   let id = event.params.tokenId;
@@ -16,11 +15,19 @@ export function handlePortalOpened(event: PortalOpened): void {
 
 export function handleOpenPortals(event: OpenPortals): void {
   let ids = event.params._tokenIds;
-  for(let i=0; i<ids.length; i++) {
+  for (let i = 0; i < ids.length; i++) {
     let id = ids[i];
     let entity = getOrCreatePortal(id);
     let svgs = fetchPortalSvgs(id);
     entity.svgs = svgs;
     entity.save();
   }
+}
+
+export function handleTransfer(event: Transfer): void {
+  let id = event.params._tokenId;
+  let entity = getOrCreatePortal(id);
+  let svgs = fetchPortalSvgs(id);
+  entity.svgs = svgs;
+  entity.save();
 }
