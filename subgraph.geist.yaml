@@ -24,6 +24,6 @@ dataSources:
           handler: handlePortalOpened
         - event: OpenPortals(uint256[])
           handler: handleOpenPortals
-        - event: Transfer(indexed address,indexed address,uint256)
+        - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
       file: ./src/mapping.ts
