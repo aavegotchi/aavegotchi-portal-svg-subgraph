@@ -6,12 +6,12 @@ dataSources:
     name: Contract
     network: base-sepolia
     source:
-      address: "0xf81FFb9E2a72574d3C4Cf4E293D4Fec4A708F2B1"
+      address: "0x86e527A5863975d0141514D20248aD17B6BF92D0"
       abi: Contract
-      startBlock: 18371153
+      startBlock: 24921013
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - ClaimAavegotchi
