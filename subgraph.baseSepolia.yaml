@@ -24,4 +24,6 @@ dataSources:
           handler: handlePortalOpened
         - event: OpenPortals(uint256[])
           handler: handleOpenPortals
+        - event: PortalData((uint256,address,uint256,address,(uint8,uint256,int16[6],address,uint256,uint16)[],string,uint256,uint256,uint256,uint256,uint256,uint256[],uint256))
+          handler: handlePortalData
       file: ./src/mapping.ts
