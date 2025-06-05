@@ -35,9 +35,11 @@ export function handleTransfer(event: Transfer): void {
 
 export function handlePortalData(event: PortalData): void {
   const data = event.params.data;
-  let id = data.gotchiId;
-  let entity = getOrCreatePortal(id);
-  let svgs = fetchPortalSvgs(id);
-  entity.svgs = svgs;
-  entity.save();
+  if (data.options.length > 0) {
+    let id = data.gotchiId;
+    let entity = getOrCreatePortal(id);
+    let svgs = fetchPortalSvgs(id);
+    entity.svgs = svgs;
+    entity.save();
+  }
 }
