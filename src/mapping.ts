@@ -40,7 +40,7 @@ export function handlePortalData(event: PortalData): void {
     let id = data.gotchiId;
     let entity = getOrCreatePortal(id);
     let svgs = fetchPortalSvgs(id);
-    log.info("PortalData: {}", [svgs.toString()]);
+
     entity.svgs = svgs;
     entity.save();
   }

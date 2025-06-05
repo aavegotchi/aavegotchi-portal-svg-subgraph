@@ -15,8 +15,7 @@ export function getOrCreatePortal(portalId: BigInt): Portal {
 
 export function fetchPortalSvgs(id: BigInt): Array<string> {
   let contract = Contract.bind(Address.fromString(AAVEGOTCHI_DIAMOND));
-  log.info("Fetching portal svgs for id: {}", [id.toString()]);
-  log.info("AAVEGOTCHI_DIAMOND: {}", [AAVEGOTCHI_DIAMOND]);
+
   let svgsData = contract.try_portalAavegotchisSvg(id);
   if (svgsData.reverted) {
     return [];
