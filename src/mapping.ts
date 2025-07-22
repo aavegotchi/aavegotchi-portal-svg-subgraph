@@ -1,5 +1,7 @@
+import { log } from "@graphprotocol/graph-ts";
 import {
   OpenPortals,
+  PortalData,
   PortalOpened,
   Transfer,
 } from "../generated/Contract/Contract";
@@ -30,4 +32,16 @@ export function handleTransfer(event: Transfer): void {
   let svgs = fetchPortalSvgs(id);
   entity.svgs = svgs;
   entity.save();
+}
+
+export function handlePortalData(event: PortalData): void {
+  const data = event.params.data;
+  if (data.options.length > 0) {
+    let id = data.gotchiId;
+    let entity = getOrCreatePortal(id);
+    let svgs = fetchPortalSvgs(id);
+
+    entity.svgs = svgs;
+    entity.save();
+  }
 }

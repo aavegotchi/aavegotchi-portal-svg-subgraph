@@ -4,14 +4,14 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Contract
-    network: geist-mainnet
+    network: base
     source:
-      address: "0x6Acc828BbbC6874de40Ca20bfeA7Cd2a2DA8DA8c"
+      address: "0xA99c4B08201F2913Db8D28e71d020c4298F29dBF"
       abi: Contract
-      startBlock: 4273
+      startBlock: 33201946
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - ClaimAavegotchi
@@ -24,6 +24,6 @@ dataSources:
           handler: handlePortalOpened
         - event: OpenPortals(uint256[])
           handler: handleOpenPortals
-        - event: Transfer(indexed address,indexed address,indexed uint256)
-          handler: handleTransfer
+        - event: PortalData((uint256,address,uint256,address,(uint8,uint256,int16[6],address,uint256,uint16)[],string,uint256,uint256,uint256,uint256,uint256,uint256[],uint256))
+          handler: handlePortalData
       file: ./src/mapping.ts
