@@ -1,0 +1,29 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Contract
+    network: base
+    source:
+      address: "0xA99c4B08201F2913Db8D28e71d020c4298F29dBF"
+      abi: Contract
+      startBlock: 33201946
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - ClaimAavegotchi
+        - EquipWearables
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: PortalOpened(indexed uint256)
+          handler: handlePortalOpened
+        - event: OpenPortals(uint256[])
+          handler: handleOpenPortals
+        - event: PortalData((uint256,address,uint256,address,(uint8,uint256,int16[6],address,uint256,uint16)[],string,uint256,uint256,uint256,uint256,uint256,uint256[],uint256))
+          handler: handlePortalData
+      file: ./src/mapping.ts
